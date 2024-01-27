@@ -71,10 +71,13 @@ const login = async(req,res)=>{
         bcrypt.compare(password,user.password,(error,result)=>{
             if(!result) return res.json({status: false, error: "password", message: "Password do not match."});
             
-            const token = jwt.sign({id: user.id},process.env.JWT_SECRET_TOKEN,{expiresIn: "1d"})
-            res.cookie("jwt",token,{
-                httpOnly: true,
-                secure:true
+            const token = jwt.sign({id: user.id},process.env.JWT_SECRET_TOKEN)
+
+
+            res.cookie('example',token, {
+                httpOnly: true, // The cookie can only be accessed by the server
+                secure: false,   // Send the cookie only over HTTPS (requires a secure connection)
+                maxAge: 24 * 60 * 60 * 1000, // Cookie expiration time in milliseconds (e.g., 1 day)
             });
             res.json({status: true, message: "Successfully Login"});
 
