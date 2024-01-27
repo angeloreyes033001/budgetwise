@@ -4,6 +4,15 @@ const {PrismaClient} = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
+const users = async(req,res)=>{
+    try {
+        const users = await prisma.users.findMany();
+        res.send(users)
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 const verify = async(req,res)=>{
     res.send({status: true, message: req.decoded})
 }
@@ -79,4 +88,4 @@ const login = async(req,res)=>{
     }
 }
 
-module.exports = {verify,login,registration}
+module.exports = {verify,login,registration,users}
