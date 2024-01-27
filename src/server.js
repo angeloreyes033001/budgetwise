@@ -13,9 +13,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(cookieParser())
 app.use(cors({
-    credentials: true,
     methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
-    origin: ["http://localhost:5173"]
+    origin: "http://localhost:5173",
+    credentials: true,
 }));
 
 app.use('/api',router);
