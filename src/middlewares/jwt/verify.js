@@ -3,14 +3,7 @@ require('dotenv').config();
 
 const verifyToken = (req, res, next) => {
   const token = req.cookies.jwt;
-
-  if (!token) {
-    return res.status(401).json({
-      status: false,
-      message: 'Unauthorized: No token provided',
-    });
-  }
-
+  
   jwt.verify(token, process.env.JWT_SECRET_TOKEN, (error, decoded) => {
     if (error) {
       if (error.name === 'TokenExpiredError') {
