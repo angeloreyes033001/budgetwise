@@ -76,7 +76,7 @@ const login = async(req,res)=>{
 
             res.cookie('jwt',token, {
                 httpOnly: true, // The cookie can only be accessed by the server
-                // secure: true,   // Send the cookie only over HTTPS (requires a secure connection)
+                secure: true,   // Send the cookie only over HTTPS (requires a secure connection)
                 maxAge: 24 * 60 * 60 * 1000, // Cookie expiration time in milliseconds (e.g., 1 day)
                 sameSite: "none"
             });

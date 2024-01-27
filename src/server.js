@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(cookieParser())
 app.use(cors({
     methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173","https://31db-136-158-125-61.ngrok-free.app"],
     credentials: true,
 }));
 
