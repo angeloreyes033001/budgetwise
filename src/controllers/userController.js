@@ -71,12 +71,12 @@ const login = async(req,res)=>{
         bcrypt.compare(password,user.password,(error,result)=>{
             if(!result) return res.json({status: false, error: "password", message: "Password do not match."});
             
-            const token = jwt.sign({id: user.id},process.env.JWT_SECRET_TOKEN)
-
+            const token = jwt.sign({id: user.id},process.env.JWT_SECRET_TOKEN,{expiredIn: "1d"})
             res.cookie("jwt",token,{
                 httpOnly: true,
-                maxAge: 24 * 60 * 60 * 1000 //1 day
-            }).json({status: true, message: "Successfully Login"});
+                secure:true
+            });
+            res.json({status: true, message: "Successfully Login"});
 
         })
 
