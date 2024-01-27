@@ -74,9 +74,9 @@ const login = async(req,res)=>{
             const token = jwt.sign({id: user.id},process.env.JWT_SECRET_TOKEN)
 
 
-            res.cookie('example',token, {
+            res.cookie('jwt',token, {
                 httpOnly: true, // The cookie can only be accessed by the server
-                secure: false,   // Send the cookie only over HTTPS (requires a secure connection)
+                // secure: true,   // Send the cookie only over HTTPS (requires a secure connection)
                 maxAge: 24 * 60 * 60 * 1000, // Cookie expiration time in milliseconds (e.g., 1 day)
             });
             res.json({status: true, message: "Successfully Login"});
